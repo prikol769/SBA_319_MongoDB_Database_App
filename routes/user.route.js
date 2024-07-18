@@ -49,15 +49,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const updatedFruit = await Fruit.findByIdAndUpdate(req.params.id, req.body);
-//     res.json(updatedFruit);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error update fruit" });
-//   }
-// });
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(updatedUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error update user" });
+  }
+});
 
 // router.delete("/:id", async (req, res) => {
 //   try {
