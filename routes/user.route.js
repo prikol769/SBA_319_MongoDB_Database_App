@@ -61,13 +61,14 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const deletedFruit = await Fruit.findByIdAndDelete(req.params.id);
-//     res.json(deletedFruit);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error delete fruit" });
-//   }
-// });
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    res.json(deletedUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error delete user" });
+  }
+});
+
 module.exports = router;
