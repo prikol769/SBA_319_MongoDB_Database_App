@@ -1,9 +1,11 @@
 const express = require("express");
+const conn = require("./db/conn");
 const app = express();
+const PORT = process.env.PORT;
 
 require("dotenv").config();
 
-const PORT = process.env.PORT;
+conn();
 
 app.get("/", (req, res) => {
   res.send("Home");
