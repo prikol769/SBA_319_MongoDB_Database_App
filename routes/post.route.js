@@ -13,9 +13,26 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+//Get Posts by user id
+router.get("/:userId", async (req, res) => {
   try {
-    const onePost = await Post.findById(req.params.id);
+    const userPosts = await Post.find({ userId: req.params.userId });
+
+    if (userPosts.length <= 0) {
+      res.json({ message: "Current user doesnt have posts!" });
+      return;
+    }
+    res.json(userPosts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error fetching post" });
+  }
+});
+
+//Get Post by post id
+router.get("/:postId", async (req, res) => {
+  try {
+    const onePost = await Post.findById(req.params.postId);
     res.json(onePost);
   } catch (error) {
     console.log(error);
