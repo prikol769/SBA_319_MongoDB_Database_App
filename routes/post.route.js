@@ -14,12 +14,12 @@ router.get("/", async (req, res) => {
 });
 
 //Get Posts by user id
-router.get("/:userId", async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
   try {
     const userPosts = await Post.find({ userId: req.params.userId });
 
     if (userPosts.length <= 0) {
-      res.json({ message: "Current user doesnt have posts!" });
+      res.json({ message: "Current user doesn`t have posts!" });
       return;
     }
     res.json(userPosts);
