@@ -12,15 +12,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const oneUser = await User.findById(req.params.id);
-//     res.json(oneUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error fetching user" });
-//   }
-// });
+router.get("/:id", async (req, res) => {
+  try {
+    const onePost = await Post.findById(req.params.id);
+    res.json(onePost);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error fetching post" });
+  }
+});
 
 // router.post("/", async (req, res) => {
 //   try {
