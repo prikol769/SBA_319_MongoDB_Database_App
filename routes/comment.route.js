@@ -12,6 +12,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get All comment by post id
+router.get("/:postId", async (req, res) => {
+  try {
+    const postComments = await Comment.find({ postId: req.params.postId });
+    res.json(postComments);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error fetching comment" });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const oneComment = await Comment.findById(req.params.id);
