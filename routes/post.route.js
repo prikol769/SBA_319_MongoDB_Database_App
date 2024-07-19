@@ -55,14 +55,23 @@ router.post("/", async (req, res) => {
 //   }
 // });
 
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const deletedUser = await User.findByIdAndDelete(req.params.id);
-//     res.json(deletedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error delete user" });
-//   }
-// });
+router.delete("/:postId/:userId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+
+    if (post.userId !== req.params.userId) {
+      res
+        .status(403)
+        .json({ message: "You are not allowed to delete this post" });
+      return;
+    }
+
+    await Post.findByIdAndDelete(req.params.postId);
+    res.status(200).json({ message: "The post has been deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error delete post" });
+  }
+});
 
 module.exports = router;
