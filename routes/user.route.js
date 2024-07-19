@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     const isUsernameExists = await User.find({ username: req.body.username });
 
     if (isUsernameExists.length > 0) {
-      res.json({
+      res.status(409).json({
         error: `User with ${req.body.username} username already exists`,
       });
       return;
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const isEmailExists = await User.find({ email: req.body.email });
 
     if (isEmailExists.length > 0) {
-      res.json({
+      res.status(409).json({
         error: `User with ${req.body.email} email already exists`,
       });
       return;
