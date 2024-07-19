@@ -1,5 +1,12 @@
 # Express API for Users, Posts, and Comments
 
+<h4 align="center">
+        Preview Render deploy link: 
+        <a href="https://sba-319-mongodb-database-app.onrender.com" target="_blank">
+                    https://sba-319-mongodb-database-app.onrender.com
+        </a>
+</h4>
+
 ## Overview
 
 This project is an Express.js-based REST API that allows for the management of users, posts, and comments. The application includes routes for creating, reading, updating, and deleting these entities. Additionally, it includes setup routes to initialize the database with sample data.
