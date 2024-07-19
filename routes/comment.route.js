@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 //Get All comment by post id
-router.get("/:postId", async (req, res) => {
+router.get("/post/:postId", async (req, res) => {
   try {
     const postComments = await Comment.find({ postId: req.params.postId });
     res.json(postComments);
@@ -23,9 +23,9 @@ router.get("/:postId", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:commentId", async (req, res) => {
   try {
-    const oneComment = await Comment.findById(req.params.id);
+    const oneComment = await Comment.findById(req.params.commentId);
     res.json(oneComment);
   } catch (error) {
     console.log(error);
