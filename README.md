@@ -1,6 +1,6 @@
 # Express API for Users, Posts, and Comments
 
-<h4 align="center">
+<h4 >
         Preview Render deploy link: 
         <a href="https://sba-319-mongodb-database-app.onrender.com" target="_blank">
                     https://sba-319-mongodb-database-app.onrender.com
