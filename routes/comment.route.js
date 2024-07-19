@@ -22,32 +22,15 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.post("/", async (req, res) => {
-//   try {
-//     const isUsernameExists = await User.find({ username: req.body.username });
-
-//     if (isUsernameExists.length > 0) {
-//       res.status(409).json({
-//         error: `User with ${req.body.username} username already exists`,
-//       });
-//       return;
-//     }
-//     const isEmailExists = await User.find({ email: req.body.email });
-
-//     if (isEmailExists.length > 0) {
-//       res.status(409).json({
-//         error: `User with ${req.body.email} email already exists`,
-//       });
-//       return;
-//     }
-
-//     const newUser = await User.create(req.body);
-//     res.json(newUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error create user" });
-//   }
-// });
+router.post("/", async (req, res) => {
+  try {
+    const newComment = await Comment.create(req.body);
+    res.json(newComment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error create comment" });
+  }
+});
 
 // router.put("/:id", async (req, res) => {
 //   try {
