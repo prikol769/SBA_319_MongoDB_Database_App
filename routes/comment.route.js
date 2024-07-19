@@ -56,14 +56,23 @@ router.put("/:commentId/:userId", async (req, res) => {
   }
 });
 
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const deletedUser = await User.findByIdAndDelete(req.params.id);
-//     res.json(deletedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error delete user" });
-//   }
-// });
+router.delete("/:commentId/:userId", async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+
+    if (comment.userId !== req.params.userId) {
+      res
+        .status(403)
+        .json({ message: "You are not allowed to delete this comment" });
+      return;
+    }
+
+    await Comment.findByIdAndDelete(req.params.commentId);
+    res.status(200).json({ message: "The comment has been deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error delete comment" });
+  }
+});
 
 module.exports = router;
