@@ -7,6 +7,7 @@ app.use(express.json());
 
 const setupRoute = require("./routes/setup.route");
 const userRoute = require("./routes/user.route");
+const postRoute = require("./routes/post.route");
 
 const PORT = process.env.PORT;
 
@@ -14,6 +15,7 @@ conn();
 
 app.use("/setup", setupRoute);
 app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 
 app.get("/", (req, res) => {
   res.send("Home");
