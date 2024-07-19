@@ -8,19 +8,19 @@ router.get("/", async (req, res) => {
     res.json(allComments);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Error fetching users" });
+    res.status(500).json({ message: "Error fetching comments" });
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const oneUser = await User.findById(req.params.id);
-//     res.json(oneUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error fetching user" });
-//   }
-// });
+router.get("/:id", async (req, res) => {
+  try {
+    const oneComment = await Comment.findById(req.params.id);
+    res.json(oneComment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error fetching comment" });
+  }
+});
 
 // router.post("/", async (req, res) => {
 //   try {
