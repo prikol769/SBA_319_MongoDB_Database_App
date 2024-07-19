@@ -43,17 +43,29 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//     });
-//     res.json(updatedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error update user" });
-//   }
-// });
+router.put("/:postId/:userId", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+
+    if (post.userId !== req.params.userId) {
+      res
+        .status(403)
+        .json({ message: "You are not allowed to delete this post" });
+      return;
+    }
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.json(updatedPost);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error update post" });
+  }
+});
 
 router.delete("/:postId/:userId", async (req, res) => {
   try {
