@@ -32,17 +32,29 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//     });
-//     res.json(updatedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Error update user" });
-//   }
-// });
+router.put("/:commentId/:userId", async (req, res) => {
+  try {
+    const comment = await Comment.findById(req.params.commentId);
+
+    if (comment.userId !== req.params.userId) {
+      res
+        .status(403)
+        .json({ message: "You are not allowed to update this comment" });
+      return;
+    }
+    const updatedComment = await Comment.findByIdAndUpdate(
+      req.params.commentId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.json(updatedComment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error update comment" });
+  }
+});
 
 // router.delete("/:id", async (req, res) => {
 //   try {
