@@ -11,6 +11,8 @@ const setupComments = require("../db/setupComments");
 router.get("/users", async (req, res) => {
   try {
     await User.deleteMany({});
+    await Post.deleteMany({});
+    await Comment.deleteMany({});
     const createdUsers = await User.create(setupUsers);
     res.json(createdUsers);
   } catch (error) {
